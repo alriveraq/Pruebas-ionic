@@ -1,4 +1,4 @@
-import { IonicInput, IonicButton, IonicItem} from '../helpers';
+import { IonicInput, IonicButton, IonicItem, IonicMenu} from '../helpers';
 import Page from './page';
 
 class Login extends Page {
@@ -7,7 +7,6 @@ class Login extends Page {
     return IonicButton.withTitle('Login') ;
   }
 
-
   get username() {
     return new IonicInput('ion-input [name="username"]');
   }
@@ -15,11 +14,24 @@ class Login extends Page {
     return new IonicInput('ion-input [name="password"]');
   }
 
-  get menu(){
-    return IonicItem.withTitle('Account');
+  get menu() {
+    return new IonicMenu();
   }
   get cuenta(){
-    return IonicItem.withTitle('Account');
+    return new IonicItem(`ion-item[routerlink="/account"]`);
+  }
+
+  get soporte(){
+    return new IonicItem('');
+  }
+
+  get deslogearse(){
+    return new IonicItem('');
+  }
+
+  async lateral(){
+    return this.menu.open();
+
   }
   async login(){
     return this.loginbutton.tap();
@@ -30,13 +42,17 @@ class Login extends Page {
     await this.password.setValue(password);
   }
 
-  async tocarcampos(username: string, password: string) {
-    await this.username.setValue(username);
-    await this.password.setValue(password);
+
+  async acount(){
+    return this.cuenta.tap();
   }
 
-  async cuentaboton(){
-    return this.cuenta.tap();
+  async suport(){
+    return this.soporte.tap();
+  }
+
+  async logout(){
+    return this.deslogearse.tap();
   }
 
 }
